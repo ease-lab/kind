@@ -121,7 +121,7 @@ func Cluster(logger log.Logger, p providers.Provider, opts *ClusterOptions) erro
 		loadbalancer.NewAction(), // setup external loadbalancer
 		configaction.NewAction(), // setup kubeadm config
 	}
-	if !opts.StopBeforeSettingUpKubernetes {
+	if opts.StopBeforeSettingUpKubernetes {
 		actionsToRun = append(actionsToRun,
 			kubeadminit.NewAction(), // run kubeadm init
 		)
@@ -151,7 +151,7 @@ func Cluster(logger log.Logger, p providers.Provider, opts *ClusterOptions) erro
 	}
 
 	// skip the rest if we're not setting up kubernetes
-	if opts.StopBeforeSettingUpKubernetes {
+	if !opts.StopBeforeSettingUpKubernetes {
 		return nil
 	}
 
