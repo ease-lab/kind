@@ -224,6 +224,10 @@ func runArgsForNode(node *config.Node, clusterIPFamily config.ClusterIPFamily, n
 		// running kind in kind for "party tricks"
 		// (please don't depend on doing this though!)
 		"--volume", "/var",
+		//modifications to run vhive tests
+		"--ipc=host",
+		"--volume", "/dev:/dev",
+		"--volume", "/run/udev/control:/run/udev/control",
 		// some k8s things want to read /lib/modules
 		"--volume", "/lib/modules:/lib/modules:ro",
 		// propagate KIND_EXPERIMENTAL_CONTAINERD_SNAPSHOTTER to the entrypoint script
